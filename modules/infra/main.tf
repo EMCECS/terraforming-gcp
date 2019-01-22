@@ -57,3 +57,14 @@ resource "google_compute_firewall" "pcf-internal" {
 
   source_ranges = "${concat(list(var.infrastructure_cidr), var.internal_access_source_ranges)}"
 }
+
+resource "google_dns_record_set" "ns" {
+  provider = "google.delegate"
+  name = "${google_dns_managed_zone.default.dns_name}"
+  type = "NS"
+  ttl  = 300
+
+  managed_zone = "${var.delegate_zone_name}"
+
+  rrdatas = ["${google_dns_managed_zone.default.name_servers}"]
+}

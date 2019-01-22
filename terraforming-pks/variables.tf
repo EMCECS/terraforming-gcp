@@ -2,11 +2,20 @@ variable "project" {
   type = "string"
 }
 
+variable "delegate_project" {
+  type = "string"
+}
+
+
 variable "env_name" {
   type = "string"
 }
 
 variable "region" {
+  type = "string"
+}
+
+variable "delegate_dns_zone_name" {
   type = "string"
 }
 
@@ -41,6 +50,10 @@ variable "opsman_machine_type" {
 }
 
 variable "service_account_key" {
+  type = "string"
+}
+
+variable "delegate_service_account_key" {
   type = "string"
 }
 

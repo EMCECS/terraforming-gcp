@@ -6,6 +6,15 @@ provider "google" {
   version = ">= 1.7.0"
 }
 
+provider "google" {
+  alias = "delegate"
+  project     = "${var.delegate_project}"
+  region      = "${var.region}"
+  credentials = "${var.delegate_service_account_key}"
+
+  version = ">= 1.7.0"
+}
+
 terraform {
   required_version = "< 0.12.0"
 }
@@ -21,6 +30,7 @@ module "infra" {
   internetless                         = "${var.internetless}"
   create_blobstore_service_account_key = "${var.create_blobstore_service_account_key}"
   internal_access_source_ranges        = ["${var.pks_cidr}", "${var.pks_services_cidr}"]
+  delegate_zone_name                   = "${var.delegate_dns_zone_name}"
 }
 
 module "ops_manager" {

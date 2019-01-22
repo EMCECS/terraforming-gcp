@@ -28,3 +28,7 @@ variable "internal_access_source_ranges" {
   type    = "list"
   default = []
 }
+
+variable "delegate_zone_name" {
+  type = "string"
+}
